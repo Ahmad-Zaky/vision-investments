@@ -19,13 +19,11 @@ Route::get('/welcome', function () {
 
 // User Side routes
 
-Route::get('/admin', function () {
-  return view('admin.index');
+Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'PostController@index');
 Route::get('/category/{category:cat_code}', 'PostController@byCategory');
