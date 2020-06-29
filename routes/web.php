@@ -13,18 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
-// User Side routes
-
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/home', 'HomeController@index')->name('home');
 });
 
 
+// User Side routes
 Route::get('/', 'PostController@index');
 Route::get('/category/{category:cat_code}', 'PostController@byCategory');
 Route::get('/{post:slug}', 'PostController@show');

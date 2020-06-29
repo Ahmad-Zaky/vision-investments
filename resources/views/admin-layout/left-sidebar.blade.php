@@ -36,10 +36,16 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a href="javascript:void(0)" class="sidebar-link">
-                <i class="fas fa-power-off"></i>
-                <span class="hide-menu"> Logout </span>
-              </a>
+              <a  href="{{ route('logout') }}" 
+                  class="sidebar-link"
+                  onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                  <i class="fas fa-power-off"></i>
+                  <span class="hide-menu"> {{ __('Logout') }} </span></a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
             </li>
           </ul>
         </li>
