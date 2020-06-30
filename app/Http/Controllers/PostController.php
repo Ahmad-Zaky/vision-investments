@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    // read all
     public function index()
     {
         $posts = new Post();
@@ -18,7 +19,13 @@ class PostController extends Controller
             'categories' => $posts->categories()
             ]);
     }
+    
+    public function indexAdmin()
+    {
+        return view('admin.posts.index');
+    }
 
+    // read one
     public function show(Post $post)
     {
         $post->category;
@@ -32,7 +39,39 @@ class PostController extends Controller
             'fullName' => $post->regUser->first_name . ' ' . $post->regUser->last_name
             ]);
     }
-        
+
+    // read one
+    public function showAdmin(Post $post)
+    {
+        return view('admin.posts.show', [
+            'post' => $post
+        ]);
+    }
+
+    // create
+    public function createAdmin()
+    {
+        return view('admin.posts.create');
+    }
+
+    // presist create
+    public function storeAdmin()
+    {
+        return view('admin.posts.index');
+    }
+
+    // update
+    public function editAdmin(Post $post)
+    {
+        return view('admin.posts.edit');
+    }
+
+    // presist update
+    public function updateAdmin()
+    {
+        return view('admin.posts.index');
+    }
+
     public function byCategory(Category $category)
     {
         $posts = new Post();
@@ -41,6 +80,17 @@ class PostController extends Controller
             'posts' => $posts->home(),
             'category' => $category,
             'categoryPosts' => $postService->getReadableCreatedAt($category->posts()->latest()->get())
+        ]);
+    }
+
+    protected function validateArticle(){
+
+        return request()->validate([
+
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required',
+            'tags' => 'exists:tags,id'
         ]);
     }
 }

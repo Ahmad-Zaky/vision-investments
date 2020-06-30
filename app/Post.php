@@ -24,7 +24,11 @@ class Post extends Model
     protected $_TRUE = 1;
     protected $_FALES = 0;
     
-    
+    // get the article path
+    public function path(){
+        
+        return route('admin.post.show', $this);
+    }
 
     /**
      * Get the category of the post.
