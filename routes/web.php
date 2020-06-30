@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
   /***  Posts Routes ***/
 
   // Read
-  Route::get('/post-card', 'PostController@indexAdmin')->name('post-card');
+  Route::get('/post-card', 'PostController@indexCardAdmin')->name('post-card');
   Route::get('/posts', 'PostController@indexAdmin')->name('posts');
   Route::get('/post/{post}', 'PostController@showAdmin')->name('post');
   

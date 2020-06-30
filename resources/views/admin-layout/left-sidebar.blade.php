@@ -41,11 +41,11 @@
               <a  href="{{ route('logout') }}" 
                   class="sidebar-link"
                   onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
+                           document.getElementById('logout-form-sidebar').submit();">
                   <i class="fas fa-power-off"></i>
                   <span class="hide-menu"> {{ __('Logout') }} </span></a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              <form id="logout-form-sidebar" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
               </form>
             </li>

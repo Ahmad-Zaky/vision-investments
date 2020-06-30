@@ -25,6 +25,11 @@ class PostController extends Controller
         return view('admin.posts.index');
     }
 
+    public function indexCardAdmin()
+    {
+        return view('admin.posts.index-card');
+    }
+
     // read one
     public function show(Post $post)
     {

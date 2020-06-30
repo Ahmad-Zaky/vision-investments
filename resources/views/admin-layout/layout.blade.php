@@ -12,15 +12,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/images/favicon.png')}}">
     <title>Vision investments admin panel</title>
 	  <link rel="canonical" href="https://www.wrappixel.com/templates/ampleadmin/" />
-    <!-- chartist CSS -->
-    <link href="/admin_panel/css/chartist.min.css" rel="stylesheet" type="text/css">
-    <link href="/admin_panel/css/chartist-plugin-tooltip.css" rel="stylesheet" type="text/css">
-    <!--c3 CSS -->
-    <link href="/admin_panel/css/morris.css" rel="stylesheet" type="text/css">
-    <link href="/admin_panel/css/c3.min.css" rel="stylesheet" type="text/css" >
-    <!-- Custom CSS -->
-    <link href="/admin_panel/css/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-    <link href="/admin_panel/css/calendar.css" rel="stylesheet" type="text/css" />
     <!-- needed css -->
     <link href="/admin_panel/css/style.min.css"  rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -119,21 +110,9 @@
     <script src="{{asset('/admin_panel/js/sidebarmenu.js')}}"></script>
     <!--Custom JavaScript -->
     <script src="{{asset('/admin_panel/js/custom.min.js')}}"></script>
-    <!-- This Page JS -->
-    <script src="{{asset('/admin_panel/js/chartist/dist/chartist.min.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/chartist-plugin-tooltip.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/d3.min.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/c3.min.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/raphael.min.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/morris.min.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/dashboard1.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/moment.min.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/fullcalendar.min.js')}}"></script>
-    <script src="{{asset('/admin_panel/js/cal-init.js')}}"></script>
+    @yield('footer')
     <script>
         $('#calendar').fullCalendar('option', 'height', 650);
-
     </script>
-    @yield('js')
 
 </html>
