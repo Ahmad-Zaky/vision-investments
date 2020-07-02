@@ -12,17 +12,19 @@ class PostController extends Controller
     // read all
     public function index()
     {
-        $posts = new Post();
         return view('index', [
-            'posts' => $posts->home(),
-            'mostViewed' => $posts->mostViewed(),
-            'categories' => $posts->categories()
+            'posts' => Post::home(),
+            'mostViewed' => Post::mostViewed(),
+            'categories' => Post::categories()
             ]);
     }
     
     public function indexAdmin()
     {
-        return view('admin.posts.index');
+        // dd(Post::indexAdmin());
+        return view('admin.posts.index', [
+            'posts' => Post::indexAdmin()
+        ]);
     }
 
     public function indexCardAdmin()
@@ -62,6 +64,7 @@ class PostController extends Controller
     // presist create
     public function storeAdmin()
     {
+        dd(request('photo'));
         return view('admin.posts.index');
     }
 

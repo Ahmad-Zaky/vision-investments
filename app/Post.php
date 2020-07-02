@@ -21,8 +21,8 @@ class Post extends Model
      * 2. not approved posts 
      * 3. get detailed date like ()
      */
-    protected $_TRUE = 1;
-    protected $_FALES = 0;
+    protected static $_TRUE = 1;
+    protected static $_FALES = 0;
     
     // get the article path
     public function path(){
@@ -57,12 +57,21 @@ class Post extends Model
     /**
      * Get the last 6 posts with category
      */
-    public function home()
+    public static function home()
     {
-        $posts = self::where('approved', $this->_TRUE)
+        $posts = self::where('approved', self::$_TRUE)
                  ->latest()
                  ->take(6)
-                 ->with('category', 'comments')
+                 ->with('category', 'regUser')
+                 ->get();
+        $postService = new PostService;
+        return $postService->getReadableCreatedAt($posts);
+    }
+
+    public static function indexAdmin()
+    {
+        $posts = self::latest()
+                 ->with('category', 'regUser')
                  ->get();
         $postService = new PostService;
         return $postService->getReadableCreatedAt($posts);
@@ -71,9 +80,9 @@ class Post extends Model
     /**
      * Get the most viewed posts
      */
-    public function mostViewed()
+    public static function mostViewed()
     {   
-        $posts = self::where('approved', $this->_TRUE)
+        $posts = self::where('approved', self::$_TRUE)
                 ->orderBy('views_count', 'desc')
                 ->with('category')
                 ->get();
@@ -84,7 +93,7 @@ class Post extends Model
     /**
      * Get posts by categories
      */
-    public function categories()
+    public static function categories()
     {
         $postService = new PostService;
         $catWithPosts = Category::with(['posts' => function($query){
@@ -98,6 +107,5 @@ class Post extends Model
         }
         return $catWithPosts;
     }
-
     
 }

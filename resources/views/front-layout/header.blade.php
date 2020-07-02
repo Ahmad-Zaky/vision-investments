@@ -216,7 +216,8 @@
               </li>
               <li
                 class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-724 no-mega-menu">
-                <a class="Premium" href="#">توصيات التداول</a></li>
+                <a class="Premium" href="#">توصيات التداول</a>
+              </li>
               <li
                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children page_item page-item-114 no-mega-menu">
                 <a class="sub-toggle" style="width:100%">نتائج التوصيات</a>
@@ -237,6 +238,10 @@
                     class="menu-item menu-item-type-taxonomy menu-item-object-category page_item page-item-111 no-mega-menu">
                     <a href="#">نتائج توصيات الأسهم المصرية</a></li>
                 </ul>
+              </li>
+              <li
+                class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-724 no-mega-menu">
+                <a class="Premium" href="{{route('register')}}">اشترك معنا</a>
               </li>
               <li
                 class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-724 no-mega-menu">

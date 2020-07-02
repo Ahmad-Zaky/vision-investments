@@ -23,10 +23,17 @@ class PostService {
       $updated_at = is_object($homePosts['updated_at']) ?
                                   date('d-m-Y H:s:i', strtotime($homePosts['updated_at']))
                                   : $this->cleanDateStr($homePosts['updated_at']);
+      $published_at = is_object($homePosts['published_at']) ?
+                                  date('d-m-Y H:s:i', strtotime($homePosts['published_at']))
+                                  : $this->cleanDateStr($homePosts['published_at']);
       return [
         'myPost' => $homePosts,
         'readableCreatedAt' => $this->formDate($created_at)['compact'],
-        'readableCreatedAtDetailed' => $this->formDate($created_at)['detailed']
+        'readableCreatedAtDetailed' => $this->formDate($created_at)['detailed'],
+        'readableUpdatedAt' => $this->formDate($updated_at)['compact'],
+        'readableUpdatedAtDetailed' => $this->formDate($updated_at)['detailed'],
+        'readablePublishedAt' => $this->formDate($published_at)['compact'],
+        'readablePublishedAtDetailed' => $this->formDate($published_at)['detailed']
       ];
     }
 
@@ -35,16 +42,21 @@ class PostService {
       // clean the home posts created_at and updated_at strings
       $post['created_at'] = $this->cleanDateStr($post['created_at']);
       $post['updated_at'] = $this->cleanDateStr($post['updated_at']);
+      $post['published_at'] = $this->cleanDateStr($post['updated_at']);
 
       $post['readableCreatedAt'] = $this->formDate($post['created_at'])['compact'];
       $post['readableCreatedAtDetailed'] = $this->formDate($post['created_at'])['detailed'];
+      $post['readableUpdatedAt'] = $this->formDate($post['updated_at'])['compact'];
+      $post['readableUpdatedAtDetailed'] = $this->formDate($post['updated_at'])['detailed'];
+      $post['readablePublishedAt'] = $this->formDate($post['published_at'])['compact'];
+      $post['readablePublishedAtDetailed'] = $this->formDate($post['published_at'])['detailed'];
 
       return $post;
     },$homePosts->toArray());
     
     return collect($homePosts);  
   }
-
+  
   /**
    * @param
    * @return [$compact, $detailed] readable date
