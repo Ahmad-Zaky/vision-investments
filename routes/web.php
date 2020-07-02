@@ -13,22 +13,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// auth Routes
-Auth::routes(); 
 
 // payment response route
-Route::get('/payment-response', function (Request $request) {
-  // dd($request);
-  return view('register.paymentStatus');
-})->name('paymentStatus');
+Route::post('/request', 'TransactionController@request')->name('request');
+Route::get('/response', 'TransactionController@response')->name('response');
+Route::get('/payment', 'RegUserController@payment')->name('payment');
+
+// auth Routes
+Auth::routes(); 
 
 // User Side routes
 Route::get('/', 'PostController@index')->name('homePosts');
 Route::get('/category/{category:cat_code}', 'PostController@byCategory')->name('catPosts');
 Route::get('/{post:slug}', 'PostController@show')->name('homePost');
-Route::get('/register', 'RegUserController@register')->name('register');
-Route::post('/transaction', 'TransactionController@store')->name('transaction');
 
+// ADMIN Panel routes
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
   Route::get('/home', 'HomeController@index')->name('home');
   

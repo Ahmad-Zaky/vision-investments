@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class RegUserController extends Controller
 {
-    public function register()
+    public function payment()
     {
         return view('register.register', [
             'posts' => Post::home()

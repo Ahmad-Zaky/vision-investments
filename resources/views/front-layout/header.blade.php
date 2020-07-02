@@ -241,7 +241,7 @@
               </li>
               <li
                 class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-724 no-mega-menu">
-                <a class="Premium" href="{{route('register')}}">اشترك معنا</a>
+                <a class="Premium" href="{{route('payment')}}">اشترك معنا</a>
               </li>
               <li
                 class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-724 no-mega-menu">

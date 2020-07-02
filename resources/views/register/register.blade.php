@@ -168,7 +168,7 @@ A:active {
 
 
 <!-- The "Pay Now!" button submits the form and gives control to the form 'action' parameter -->
-<form action="{{route('transaction')}}" method="post" accept-charset="UTF-8">
+<form action="{{route('request')}}" method="post" accept-charset="UTF-8">
   @csrf
 
   <input type="hidden" name="Title" value="PHP VPC 3 Party Transacion">
@@ -220,7 +220,7 @@ A:active {
     </tr>
     <tr class="shade">
       <td align="right"><strong><em>Receipt ReturnURL: </em></strong></td>
-      <td><input name="vpc_ReturnURL" size="65" value="{{route('paymentStatus')}}" maxlength="250" />
+      <td><input name="vpc_ReturnURL" size="65" value="{{route('response')}}" maxlength="250" />
       </td>
     </tr>
     <tr>
