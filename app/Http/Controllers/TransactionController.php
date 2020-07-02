@@ -99,37 +99,98 @@ class TransactionController extends Controller
     public function request(Request $request)
     {
         $merchantData = DB::table('merchant_api_data')->where('user_id', Auth::id())->first();
-        // Setup payment gateway
-        $gateway = Omnipay::create('Migs_ThreeParty');
+        // // Setup payment gateway
+        // $gateway = Omnipay::create('Migs_ThreeParty');
 
-        $gateway->setMerchantId($merchantData->merchantId);
-        $gateway->setMerchantAccessCode($merchantData->accessCode);
-        $gateway->setSecureHash($merchantData->secureHash);
+        // $gateway->setMerchantId($merchantData->merchantId);
+        // $gateway->setMerchantAccessCode($merchantData->accessCode);
+        // $gateway->setSecureHash($merchantData->secureHash);
 
-        try {
-            $response = $gateway->purchase([
-                'amount' => (float)$request->vpc_Amount, // amount should be greater than zero
-                'currency' => $request->vpc_Currency,
-                'transactionId' => $request->vpc_MerchTxnRef, // replace this for your reference # such as invoice reference #
-                'returnURL' => $request->vpc_ReturnURL,
-                'localeCode' => $request->vpc_Locale,
-                'description' => $request->vpc_OrderInfo
-            ])->send();
+        // try {
+        //     $response = $gateway->purchase([
+        //         'amount' => (float)$request->vpc_Amount, // amount should be greater than zero
+        //         'currency' => $request->vpc_Currency,
+        //         'transactionId' => $request->vpc_MerchTxnRef, // replace this for your reference # such as invoice reference #
+        //         'returnURL' => $request->vpc_ReturnURL,
+        //         'localeCode' => $request->vpc_Locale,
+        //         'description' => $request->vpc_OrderInfo
+        //     ])->send();
         
-            if ($response->isRedirect()) {
-                $url = $response->getRedirectUrl(); // do whatever with the return url
+        //     if ($response->isRedirect()) {
+        //         $url = $response->getRedirectUrl(); // do whatever with the return url
                 
-                return redirect($url);
-            } else {
-                echo 'error';
-                // payment failed: display message to customer
-                echo $response->getMessage();
+        //         return redirect($url);
+        //     } else {
+        //         echo 'error';
+        //         // payment failed: display message to customer
+        //         echo $response->getMessage();
+        //     }
+        // } catch (\Exception $e) {
+        //     // internal error, log exception and display a generic message to the customer
+        //     echo $e;
+        //     exit('Sorry, there was an error processing your payment. Please try again later.');
+        // }
+
+
+        // 2. Virtual Payment Client Approach
+        $_POST = $request->all();
+        
+        // unset unneeded data
+        unset($_POST['_token']);
+        unset($_POST["SubButL"]);
+        unset($_POST["Title"]);
+
+        // Define Merchant ID and Access Code
+        $merchantId = $merchantData->merchantId;
+        $accessCode = $merchantData->accessCode;
+        
+        // Add MerchantID and MerchentAccessCode
+        $_POST = ["vpc_Merchant" => $merchantId] + $_POST ;
+
+        
+        $conn = new VPCPaymentConnection();
+       
+        // This is secret for encoding the SHA256 hash
+        // This secret will vary from merchant to merchant
+        $secureSecret = $merchantData->secureHash;
+
+        // Set the Secure Hash Secret used by the VPC connection object
+        $conn->setSecureSecret($secureSecret);
+
+
+        // *******************************************
+        // START OF MAIN PROGRAM
+        // *******************************************
+        
+        // Sort the POST data - it's important to get the ordering right
+        ksort ($_POST);
+        
+        // add the start of the vpcURL querystring parameters
+        $vpcURL = $_POST["virtualPaymentClientURL"];
+
+        
+        
+        // Remove the Virtual Payment Client URL from the parameter hash as we 
+        // do not want to send these fields to the Virtual Payment Client.
+        unset($_POST["virtualPaymentClientURL"]); 
+        
+
+        // Add VPC post data to the Digital Order
+        foreach($_POST as $key => $value) {
+            if (strlen($value) > 0) {
+                $conn->addDigitalOrderField($key, $value);
             }
-        } catch (\Exception $e) {
-            // internal error, log exception and display a generic message to the customer
-            echo $e;
-            exit('Sorry, there was an error processing your payment. Please try again later.');
         }
+
+        // Obtain a one-way hash of the Digital Order data and add this to the Digital Order
+        $secureHash = $conn->hashAllFields();
+        $conn->addDigitalOrderField("vpc_SecureHash", $secureHash);
+        $conn->addDigitalOrderField("vpc_SecureHashType", "SHA256");
+
+        // Obtain the redirection URL and redirect the web browser
+        $vpcURL = $conn->getDigitalOrder($vpcURL);
+
+        return redirect($vpcURL);
     }
 
     /**
