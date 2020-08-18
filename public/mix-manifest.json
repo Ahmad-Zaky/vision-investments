@@ -1,5 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
+<<<<<<< HEAD
     "/css/app_cart.css": "/css/app_cart.css",
     "/css/responsive_cart.css": "/css/responsive_cart.css"
+=======
+    "/css/app.css": "/css/app.css"
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
 }

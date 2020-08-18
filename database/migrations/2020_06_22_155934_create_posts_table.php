@@ -15,11 +15,19 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
             $table->string('slug')->unique();
             $table->string('title');
             $table->string('excerpt');
             $table->text('body');
             $table->string('thumbnail')->nullable()->unique();
+=======
+            $table->string('slug');
+            $table->string('title');
+            $table->string('excerpt');
+            $table->text('body');
+            $table->string('thumbnail')->nullable();
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
             $table->integer('likes_count')->unsigned()->default(0);
             $table->integer('views_count')->unsigned()->default(0);
             $table->boolean('approved')->default(0);

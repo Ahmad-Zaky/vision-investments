@@ -13,12 +13,20 @@ class PostController extends Controller
     // read all
     public function index()
     {
+<<<<<<< HEAD
         return view('index');
         // return view('index', [
         //     'posts' => Post::home(),
         //     'mostViewed' => Post::mostViewed(),
         //     'categories' => Post::categories()
         //     ]);
+=======
+        return view('index', [
+            'posts' => Post::home(),
+            'mostViewed' => Post::mostViewed(),
+            'categories' => Post::categories()
+            ]);
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
     }
     
     public function indexAdmin()

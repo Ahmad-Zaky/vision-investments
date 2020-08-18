@@ -37274,6 +37274,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/sass/app_cart.scss":
 /*!**************************************!*\
   !*** ./resources/sass/app_cart.scss ***!
@@ -37289,6 +37290,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*********************************************!*\
   !*** ./resources/sass/responsive_cart.scss ***!
   \*********************************************/
+=======
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -37297,15 +37304,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
+<<<<<<< HEAD
 /*!********************************************************************************************************!*\
   !*** multi ./resources/js/app.js ./resources/sass/app_cart.scss ./resources/sass/responsive_cart.scss ***!
   \********************************************************************************************************/
+=======
+/*!*************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  \*************************************************************/
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\xampp\htdocs\Ofeed\ofeed_test\ofeed_test\resources\js\app.js */"./resources/js/app.js");
+<<<<<<< HEAD
 __webpack_require__(/*! C:\xampp\htdocs\Ofeed\ofeed_test\ofeed_test\resources\sass\app_cart.scss */"./resources/sass/app_cart.scss");
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\Ofeed\ofeed_test\ofeed_test\resources\sass\responsive_cart.scss */"./resources/sass/responsive_cart.scss");
+=======
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Ofeed\ofeed_test\ofeed_test\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
 
 
 /***/ })

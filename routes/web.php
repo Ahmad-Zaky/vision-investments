@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // payment response route
+<<<<<<< HEAD
 Route::get('/subscribe', 'SubscriptionController@subscribe')->name('subscribe');
 Route::post('/request', 'SubscriptionController@request')->name('request');
 Route::get('/response', 'SubscriptionController@response')->name('response');
@@ -22,12 +23,21 @@ Route::get('/payment', 'SubscriptionController@payment')->name('payment');
 Route::get('/payment-fawry', 'SubscriptionController@fawry')->name('paymentFawry');
 Route::get('/payment-fawry-callback', 'SubscriptionController@fawryCallBack')->name('paymentFawryCallback');
 Route::get('/payment-fawry-callback-response', 'SubscriptionController@fawryCallbackResponse')->name('payFawryCallResp');
+=======
+Route::post('/request', 'TransactionController@request')->name('request');
+Route::get('/response', 'TransactionController@response')->name('response');
+Route::get('/payment', 'RegUserController@payment')->name('payment');
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
 
 // auth Routes
 Auth::routes(); 
 
 // User Side routes
+<<<<<<< HEAD
 Route::get('/', 'PostController@index')->name('home-vision');
+=======
+Route::get('/', 'PostController@index')->name('homePosts');
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
 Route::get('/category/{category:cat_code}', 'PostController@byCategory')->name('catPosts');
 Route::get('/{post:slug}', 'PostController@show')->name('homePost');
 

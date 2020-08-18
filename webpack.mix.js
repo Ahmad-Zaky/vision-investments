@@ -12,5 +12,9 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+<<<<<<< HEAD
     .sass('resources/sass/app_cart.scss', 'public/css')
     .sass('resources/sass/responsive_cart.scss', 'public/css');
+=======
+    .sass('resources/sass/app.scss', 'public/css');
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d

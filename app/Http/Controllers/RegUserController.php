@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class RegUserController extends Controller
 {
+<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      *
@@ -81,5 +82,12 @@ class RegUserController extends Controller
     public function destroy(RegUser $regUser)
     {
         //
+=======
+    public function payment()
+    {
+        return view('register.register', [
+            'posts' => Post::home()
+        ]);
+>>>>>>> cf704e62529f0efa54daf011aede787371eced0d
     }
 }
